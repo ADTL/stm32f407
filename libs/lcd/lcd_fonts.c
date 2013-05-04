@@ -314,6 +314,14 @@ uint8_t lcd_get_font_height(const uint8_t * p_font) {
     return lcd_font_header.height;
 }
 
+uint8_t lcd_get_font_width(const uint8_t * p_font) {
+    // Load font, if necessary
+    if (p_font != lcd_p_font)
+	lcd_load_font(p_font);
+    
+    return lcd_font_header.maximal_width;
+}
+
 /**
  * @param [in] text			Character string of the text
  * 
@@ -375,4 +383,12 @@ lcd_error_t lcd_draw_centered_text(const char * text, uint8_t y, lcd_color_t tex
     uint8_t x = (LCD_WIDTH - lcd_get_text_width(text, p_font, char_spacing)) / 2 + 1;
     
     return lcd_draw_text(text, x, y, text_color, p_background_color, p_font, char_spacing);
+}
+
+uint16_t lcd_strlen(const char * text) {
+    uint16_t length = 0;
+    /* calculate string length */
+    while (*text++ != '\0') length++;
+    
+    return length;
 }

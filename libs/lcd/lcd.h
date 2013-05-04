@@ -197,8 +197,12 @@ lcd_error_t lcd_draw_centered_text(const char * text, uint8_t y, lcd_color_t tex
 /** Gets the height of a font in program memmory. */
 uint8_t lcd_get_font_height(const uint8_t * p_font);
 
+uint8_t lcd_get_font_width(const uint8_t * p_font);
+
 /** Gets the width in pixels of a string for a given font and character spacing. */
 uint16_t lcd_get_text_width(const char * text, const uint8_t * p_font, int8_t char_spacing);
+
+uint16_t lcd_strlen(const char * text);
 
 //@}
 
