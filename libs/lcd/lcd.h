@@ -184,6 +184,11 @@ lcd_error_t lcd_draw_text(const char *text, uint8_t x, uint8_t y, lcd_color_t te
 			  const lcd_color_t *p_background_color, const uint8_t * p_font,
 			  int8_t char_spacing);
 
+/** Draws vertical text from a character string */
+lcd_error_t lcd_draw_vert_text(const char * text, uint8_t x, uint8_t y, lcd_color_t text_color,
+			  const lcd_color_t * p_background_color, const uint8_t * p_font,
+			  int8_t char_spacing);
+
 /** Draws text horizontally centered from a character string. */
 lcd_error_t lcd_draw_centered_text(const char * text, uint8_t y, lcd_color_t text_color,
 				 const lcd_color_t * p_background_color, const uint8_t * p_font,

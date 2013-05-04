@@ -42,7 +42,7 @@ uint8_t lcd_get_char_width(unsigned char c, const uint8_t * p_font) {
 
 // -----------------------------------------------------------------------------
 
-/** @param [in] pFont		Pointer to the font array in program memmory to load */
+/** @param [in] p_font		Pointer to the font array in program memmory to load */
 lcd_error_t lcd_load_font(const uint8_t * p_font) {
     uint8_t byte;
     
@@ -227,6 +227,72 @@ lcd_error_t lcd_draw_text(const char * text, uint8_t x, uint8_t y, lcd_color_t t
 	
 	if ((p_background_color != NULL) && (i != length - 1))
 	    lcd_fill_rectangle(old_x, y, x, y + lcd_font_header.height - 1,
+			       *p_background_color);
+    }
+    
+    return LCD_NO_ERROR;
+}
+
+/**
+ * @param [in] text					The character string to draw
+ *
+ * @param [in] x, y					The coordinates to draw the text at
+ *
+ * @param [in] text_color			The color to draw the text with
+ *
+ * @param [in] p_background_color		Pointer to a background color for the text,
+ * 									can be NULL to draw a transparent
+ *
+ * @param [in] p_font				Pointer to a font array in program memmory to use
+ *
+ * @param [in] char_spacing			A spacing value to offset every character with,
+ * 									has no effect if set to 0
+ * 
+ * @return							An error code, > 0 on failure and LCD_NO_ERROR
+ * 									(= 0) on success.
+ */
+lcd_error_t lcd_draw_vert_text(const char * text, uint8_t x, uint8_t y, lcd_color_t text_color,
+			  const lcd_color_t * p_background_color, const uint8_t * p_font,
+			  int8_t char_spacing) {
+    uint8_t c;
+    uint8_t old_y, char_height;
+    uint16_t length = 0;
+    uint16_t i;
+    const uint8_t * p_text = text;
+    /* calculate string length */
+    while (*p_text++ != '\0') length++;
+    
+    if (text == NULL)
+	return LCD_ERROR;
+    // Load font, if necessary
+    if (p_font != lcd_p_font)
+	lcd_load_font(p_font);
+    
+    for (i = 0; i < length; i++) {
+	c = (uint8_t) text[i];
+	
+	if (c == 0x20) {
+	    if (p_background_color != NULL)
+		lcd_fill_rectangle(x, y, x + lcd_font_header.space_width,
+				   y + lcd_font_header.height - 1, * p_background_color);
+	    x += lcd_font_header.space_width;
+	    continue;
+	}
+	
+	char_height = lcd_get_font_height(p_font);
+	
+	lcd_draw_char(c, x, y, text_color, p_background_color, p_font);
+	
+	y += char_height;
+	
+	if (y >= LCD_HEIGHT)
+	    break;
+	
+	old_y = y;
+	y += char_spacing;
+	
+	if ((p_background_color != NULL) && (i != length - 1))
+	    lcd_fill_rectangle(x, old_y, x, y,
 			       *p_background_color);
     }
     
