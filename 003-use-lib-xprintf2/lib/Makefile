@@ -8,6 +8,8 @@
 # Build all libraries
 all:
 	$(MAKE) -C std_periph
+	$(MAKE) -C xprintf
 
 clean:
 	$(MAKE) clean -C std_periph
+	$(MAKE) -C xprintf

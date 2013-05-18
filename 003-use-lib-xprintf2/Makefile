@@ -9,6 +9,8 @@
 ROOTDIR=$(realpath .)
 # Include common config
 include lib/make/Makefile.common
+# Add another include
+CFLAGS+= -I$(ROOTDIR)/lib/xprintf
 # Secondary compiler flags
 CFLAGS+= -Wl,-T,stm32f4xxxg_flash.ld
 # Libs

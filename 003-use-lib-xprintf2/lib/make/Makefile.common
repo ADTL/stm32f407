@@ -30,5 +30,6 @@ CFLAGS+= -I$(LIBS_STM_PATH)/inc
 LDFLAGS=-L.
 # Library paths
 LIBPATHS = -Llib/std_periph
+LIBPATHS+= -Llib/xprintf
 # Libraries to link
-LIBS = -lstdperiph
+LIBS = -lstdperiph -lxprintf
