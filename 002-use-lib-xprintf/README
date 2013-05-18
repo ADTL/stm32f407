@@ -3,14 +3,17 @@ STM32F407(STM32F4-DISCOVERY) - unconventional approach - base project
 Common project files and base make rules.
 
 Libs:
-	SPL(Standart Peripheral Library)
-	   path - libs/std_periph
-	CMSIS
-	   path - inc/base/stdint.h
-	          inc/core_support/arm_common_tables.h
-		  inc/core_support/arm_math.h
-		  inc/core_support/core_cm4.h
-		  inc/core_support/core_cm4_simd.h
-		  inc/core_support/core_cmFunc.h
-		  inc/core_support/core_cmInstr.h
-	
+    ELMChan Xprintf
+	path - inc/xprintf.h
+	    src/xprintf.c
+    
+    SPL(Standart Peripheral Library)
+	path - libs/std_periph
+    CMSIS
+	path - inc/base/stdint.h
+	    inc/core_support/arm_common_tables.h
+	    inc/core_support/arm_math.h
+	    inc/core_support/core_cm4.h
+	    inc/core_support/core_cm4_simd.h
+	    inc/core_support/core_cmFunc.h
+	    inc/core_support/core_cmInstr.h
