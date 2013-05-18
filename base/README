@@ -4,7 +4,7 @@ Common project files and base make rules.
 
 Libs:
 	SPL(Standart Peripheral Library)
-	   path - libs/std_periph
+	   path - lib/std_periph
 	CMSIS
 	   path - inc/base/stdint.h
 	          inc/core_support/arm_common_tables.h
