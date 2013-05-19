@@ -1,4 +1,4 @@
-STM32F407(STM32F4-DISCOVERY) - unconventional approach - base project
+STM32F407(STM32F4-DISCOVERY) - unconventional approach - use xprintf project
 
 Common project files and base make rules.
 

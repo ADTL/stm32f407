@@ -1,4 +1,4 @@
-STM32F407(STM32F4-DISCOVERY) - unconventional approach - use xprintf lib project
+STM32F407(STM32F4-DISCOVERY) - unconventional approach - use xprintf lib with spl lib project
 
 Common project files and base make rules.
 
